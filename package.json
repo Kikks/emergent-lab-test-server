@@ -45,7 +45,8 @@
     "winston": "2.4.0"
   },
   "engines": {
-    "npm": "please-use-yarn"
+    "npm": "please-use-yarn",
+    "node": ">=16.0.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^6.2.0",
