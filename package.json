@@ -11,8 +11,7 @@
     "build": "NODE_ENV=production tsc -p tsconfig.json",
     "lint:fix": "prettier --write '*/**/*.{js,ts,tsx,jsx}' && eslint --quiet --cache --fix '*/**/*.{js,ts,tsx}'",
     "precommit": "lint-staged",
-    "start": "yarn build && node build/src/index.js",
-    "test": "NODE_ENV=test TS_NODE_FILES=true mocha --exit --timeout 20000 --require ts-node/register 'test/**/*.spec.ts'"
+    "start": "yarn build && node build/src/index.js"
   },
   "repository": {
     "type": "git",
