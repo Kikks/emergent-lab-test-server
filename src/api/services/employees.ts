@@ -7,11 +7,10 @@ const getEmployees = ({ search, page, limit }: { search: any; page: any; limit: 
   const employees = AppDataSource.createQueryBuilder()
     .select('employee')
     .from(Employee, 'employee')
-    .where('employee.fullName like :search', { search: `%${search || ''}%` })
-    .orWhere('employee.email like :search', { search: `%${search || ''}%` })
-    .orWhere('employee.phoneNumber like :search', { search: `%${search || ''}%` })
-    .skip(page && Number(page) !== NaN ? (Number(page) < 0 ? undefined : Number(page)) : undefined)
-    .take(limit && Number(limit) !== NaN ? Number(limit) : undefined)
+    .where('employee.fullName like :search', { search: `%${search ? String(search) : ''}%` })
+    .skip(page && limit ? (page - 1) * limit : undefined)
+    .take(limit)
+    .orderBy('employee.id', 'DESC')
     .getManyAndCount()
 
   return employees
