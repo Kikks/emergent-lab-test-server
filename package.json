@@ -44,7 +44,7 @@
     "winston": "2.4.0"
   },
   "engines": {
-    "npm": "please-use-yarn",
+    "npm": ">=7.0.0",
     "node": ">=16.0.0"
   },
   "devDependencies": {
