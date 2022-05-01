@@ -4,7 +4,7 @@ exports.dataSource = exports.AppDataSource = void 0;
 const typeorm_1 = require("typeorm");
 const Employee_1 = require("./entity/Employee");
 const User_1 = require("./entity/User");
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || 'production';
 const environmentConfig = {
     development: {
         username: process.env.DEVELOPMENT_USERNAME,
@@ -28,6 +28,7 @@ const environmentConfig = {
         port: process.env.PRODUCTION_PORT,
     },
 };
+console.log(environmentConfig[env]);
 const AppDataSource = new typeorm_1.DataSource({
     type: 'mysql',
     port: environmentConfig[env].port ? Number(environmentConfig[env].port) : undefined,
