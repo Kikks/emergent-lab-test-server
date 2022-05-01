@@ -88,6 +88,7 @@ AppDataSource.initialize()
     server.on('listening', onListening)
   })
   .catch((error) => {
+    console.log(error)
     logger.error(error)
   })
 
