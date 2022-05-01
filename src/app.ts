@@ -2,9 +2,11 @@ import 'reflect-metadata'
 
 import bluebird from 'bluebird'
 import * as bodyParser from 'body-parser'
+import cors from 'cors'
 import express, { Application, NextFunction, Request, Response } from 'express'
 import morgan from 'morgan'
 
+import { corsWhitelist } from './api/lib/constants'
 import { routes } from './api/routes'
 import { logger } from './config/winston'
 
@@ -13,6 +15,11 @@ export class EmergentLabAPI {
 
   public constructor() {
     this.server = express()
+    this.server.use(
+      cors({
+        origin: corsWhitelist,
+      })
+    )
     this.server.use(morgan('combined', { stream: logger.stream }))
     this.server.use(bodyParser.json())
     this.server.use(bodyParser.urlencoded({ extended: true }))
