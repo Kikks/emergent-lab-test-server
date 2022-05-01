@@ -37,6 +37,8 @@ const environmentConfig: {
   },
 }
 
+console.log(environmentConfig[env])
+
 const AppDataSource = new DataSource({
   type: 'mysql',
   port: environmentConfig[env].port ? Number(environmentConfig[env].port) : undefined,
