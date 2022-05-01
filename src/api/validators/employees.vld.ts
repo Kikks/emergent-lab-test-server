@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { isEmpty } from 'lodash/fp'
+import _ from 'lodash'
 
 import { Role } from '../../types/Roles'
 import { IEmployee } from '../interfaces/employee.intf'
@@ -14,7 +14,7 @@ const returnFailure = (error: string, res: Response) => {
 }
 
 const validateEmployeeData = (req: Request, res: Response, next: NextFunction) => {
-  if (isEmpty(req.body)) {
+  if (_.isEmpty(req.body)) {
     return returnFailure('Empty request body', res)
   }
 
