@@ -3,7 +3,7 @@ import { DataSource } from 'typeorm'
 import { Employee } from './entity/Employee'
 import { User } from './entity/User'
 
-const env = process.env.NODE_ENV || 'production'
+const env = process.env.NODE_ENV || 'development'
 
 const environmentConfig: {
   [key: string]: {
@@ -37,19 +37,30 @@ const environmentConfig: {
   },
 }
 
-const AppDataSource = new DataSource({
-  type: 'mysql',
-  port: environmentConfig[env].port ? Number(environmentConfig[env].port) : undefined,
-  host: environmentConfig[env].host,
-  username: environmentConfig[env].username,
-  password: environmentConfig[env].password,
-  database: environmentConfig[env].database,
-  synchronize: true,
-  logging: false,
-  entities: [Employee, User],
-  migrations: [],
-  subscribers: [],
-})
+const AppDataSource =
+  env === 'production'
+    ? new DataSource({
+        type: 'mysql',
+        url: process.env.DATABASE_URL,
+        synchronize: true,
+        logging: false,
+        entities: [Employee, User],
+        migrations: [],
+        subscribers: [],
+      })
+    : new DataSource({
+        type: 'mysql',
+        port: environmentConfig[env].port ? Number(environmentConfig[env].port) : undefined,
+        host: environmentConfig[env].host,
+        username: environmentConfig[env].username,
+        password: environmentConfig[env].password,
+        database: environmentConfig[env].database,
+        synchronize: true,
+        logging: false,
+        entities: [Employee, User],
+        migrations: [],
+        subscribers: [],
+      })
 
 const dataSource = AppDataSource.createQueryBuilder()
 
