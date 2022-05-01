@@ -106,6 +106,7 @@ db_1.AppDataSource.initialize()
     server.on('listening', onListening);
 })
     .catch((error) => {
+    console.log(error);
     winston_1.logger.error(error);
 });
 //# sourceMappingURL=www.js.map
