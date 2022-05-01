@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "NODE_ENV=production ts-node-dev --transpile-only --exit-child ./setup/www.ts",
-    "build": "NODE_ENV=production tsc -p tsconfig.json && node build/setup/www.js",
+    "build": "NODE_ENV=production tsc -p tsconfig.json",
     "lint:fix": "prettier --write '*/**/*.{js,ts,tsx,jsx}' && eslint --quiet --cache --fix '*/**/*.{js,ts,tsx}'",
     "precommit": "lint-staged",
     "start": "yarn build && node build/setup/www.js"
