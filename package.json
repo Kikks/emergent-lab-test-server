@@ -11,8 +11,8 @@
     "build": "NODE_ENV=production tsc -p tsconfig.json",
     "lint:fix": "prettier --write '*/**/*.{js,ts,tsx,jsx}' && eslint --quiet --cache --fix '*/**/*.{js,ts,tsx}'",
     "precommit": "lint-staged",
-    "start": "node setup/www.js",
-    "start-server": "PROD=true node setup/www.js"
+    "start": "node build/setup/www.js",
+    "start-server": "PROD=true node build/setup/www.js"
   },
   "repository": {
     "type": "git",
